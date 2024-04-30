@@ -1,30 +1,18 @@
 package main
 
-import "fmt"
-
-var(
-	nome string
-	n1 int
-	n2 int32	
+import (
+	"fmt"
 )
 
-func main(){
-	mensagem := "Aula GO"
-	fmt.Println(mensagem)
-
-	var b,f,s = true, 2.3, "Olá"
-
-	fmt.Println(b,f,s)
-
-	var total int
-	total++
-	fmt.Println("total: ", total)
-
-	nome = "Gisele"
+func hello(nome string) {
 	fmt.Println("Hello ", nome, "!")
+}
 
-	var x,y = 10,20
-	fmt.Println(x,y)
-	x,y = y,x
-	fmt.Println(x,y)
+func sum(a, b int) int {
+	//return ("A soma entre ", a, " e ", b, " é: ", a + b)
+	return a + b
+}
+
+func main() {
+	hello("Gisele")
 }
