@@ -5,7 +5,7 @@ import (
 )
 
 func hello(nome string) {
-	fmt.Println("Hello ", nome, "!")
+	fmt.Printf("Hello ", nome, "!")
 }
 
 func sum(a, b int) int {
@@ -13,6 +13,6 @@ func sum(a, b int) int {
 	return a + b
 }
 
-func main() {
+/*func main() {
 	hello("Gisele")
-}
+}*/
