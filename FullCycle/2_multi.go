@@ -20,9 +20,14 @@ func contador(x int) {
 	}
 */
 func main() {
-	go contador(10)
-	go contador(10)
-	go contador(10)
+	canal := make(chan string)
+
+	go func() {
+		canal <- "opa"
+	}()
+
+	msg := <-canal
+	fmt.Println(msg) //T1
 }
 
 // T1 : linha do func e T2 : primeira linha  do contador -> acessam o mesmo bloco de rotina
