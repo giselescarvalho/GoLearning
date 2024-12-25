@@ -8,7 +8,7 @@ type Pessoa struct {
 	saboresfavoritos []string
 }
 
-//3
+// 3
 type caminhoneta struct {
 	Veiculo
 	tracaoNasQuatro bool
@@ -47,7 +47,7 @@ func main() {
 	//#2 com map
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#2 :")
-	apa := make(map[string]Pessoa)
+	mapa := make(map[string]Pessoa)
 	mapa["Ipsum"] = Pessoa{"Joao", "Ipsum", []string{"morango", "choco"}}
 
 	fmt.Println("----------------")
@@ -74,7 +74,6 @@ func main() {
 	fmt.Println(veiculoCaminhoneta)
 	fmt.Println(veiculoCaminhoneta.tracaoNasQuatro)
 	fmt.Println(sedanHomem)
-}
 
 	//#4
 	fmt.Println("\n-----------------------------------")
@@ -94,6 +93,5 @@ func main() {
 	}
 
 	fmt.Println(any)
-
 
 }
