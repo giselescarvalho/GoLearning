@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	fmt.Println("\n-----------------------------------")
@@ -36,26 +39,65 @@ func main() {
 	//#5
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#5 :")
-	fmt.Println(exercicio5(x))
+	x := quadrado{
+		lado: 15,
+	}
 
-	//#6
+	y := circulo{
+		raio: 16.0,
+	}
+
+	medida(x)
+	medida(y)
+	fmt.Println("https://go.dev/play/p/l4wCteJB2sn")
+
+	//#6 criar função anonima
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#6 :")
+	func() {
+		fmt.Println("Hello, func anonima")
+	}()
 
-	//#7
+	//#7 atribuir função a uma variavel
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#7 :")
+	xpto := func(){
+		fmt.Println("Hello, xpto")
+	} xpto()
 
-	//#8
+	//#8 função que retorna uma função
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#8 :")
+	zyq := retornaumafunc()
+	zyq()
 
-	//#9
+	//#9 passar uma função como argumento para outra função
 	fmt.Println("\n-----------------------------------")
 	fmt.Println("#9 :")
+	essavaireceberoutrafunc(argumentodefunc)
+
+	
+	//#10 closure - função que retorna outra função, onde esta última faz uso de uma variável
+	fmt.Println("\n-----------------------------------")
+	fmt.Println("#10 :")
+	a := ii()
+	b := ii()
+	fmt.Println(a())
+	fmt.Println(a())
+	fmt.Println(a())
+	fmt.Println(a())
+	fmt.Println(b())
+	fmt.Println(b())
+	fmt.Println(b())
+
+	//#11 
+	fmt.Println("\n-----------------------------------")
+	fmt.Println("#11 :")
+
 }
 
-//#1
+
+// #1
 func retornaumint() int {
 	return 10
 }
@@ -64,7 +106,7 @@ func retornauminteumastring() (int, string) {
 	return 20, "string"
 }
 
-//#2 recebe um parametro variadico do tipo int e retorna a soma de todos os ints recebidos
+// #2 recebe um parametro variadico do tipo int e retorna a soma de todos os ints recebidos
 func somavariadica(x ...int) int {
 	soma := 0
 	for _, valor := range x {
@@ -74,7 +116,7 @@ func somavariadica(x ...int) int {
 	return soma
 }
 
-//outra funcao que recebe slice of int e retorna
+// outra funcao que recebe slice of int e retorna
 func somasi(x []int) int {
 	soma := 0
 	for _, valor := range x {
@@ -84,7 +126,7 @@ func somasi(x []int) int {
 	return soma
 }
 
-//#3 usando defer
+// #3 usando defer
 func deferdepois(int) (string, string) {
 	s1 := "200"
 	s2 := "199"
@@ -98,7 +140,7 @@ func deferantes(int) string {
 	return s3
 }
 
-//#4
+// #4
 type pessoa struct {
 	nome      string
 	sobrenome string
@@ -110,22 +152,56 @@ func (FOFAODATV pessoa) demonstrar() {
 	fmt.Println("O nome completo dessa pessoa é: ", FOFAODATV.nome)
 }
 
-//#5
-type qudrado struct {
+// #5
+type quadrado struct {
 	lado int
 }
 type circulo struct {
-	raio     int
-	diametro int
-}
-
-func (q quadrado) area() {
-	res := q.lado
-	fmt.Println("area: ", res)
-}
-
-func exercicio5() {
-
+	raio     float64
+	diametro float64
 }
 
 type figura interface{}
+
+type info interface {
+	area()
+}
+
+func (q quadrado) area() {
+	res := q.lado * q.lado
+	fmt.Println("area: ", res)
+}
+
+func (c circulo) area() {
+	resul := math.Pi * 2 * c.raio
+	fmt.Println("area: ", resul)
+}
+func medida(i info) { i.area() }
+
+// #8
+func retornaumafunc() func(){
+	return func() {
+		fmt.Println("Retornando uma func")
+	}
+}
+
+
+//#9
+func argumentodefunc() {
+	fmt.Println("argumento da func")
+
+}
+
+func essavaireceberoutrafunc(x func()) {
+	fmt.Println("Prestenção")
+	x()
+}
+
+//#10 closure
+func ii() func() int {
+	x := 0
+	return func() int {
+		x++
+		return x
+	}
+}
